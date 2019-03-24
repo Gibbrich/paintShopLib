@@ -1,40 +1,38 @@
 import java.util.*
 
-fun solve(
-    customers: List<Customer>,
-    customerId: Int = customers.lastIndex
-): Set<Solution> {
+fun solve(customers: List<Customer>): Set<Solution> {
     if (customers.isEmpty()) {
         return emptySet()
     }
 
-    if (customerId == 0) {
-        return customers[customerId].paints
-            .map {
-                val map = TreeMap<Int, Int>().apply {
-                    put(it.key, it.value)
-                }
-                Solution(map)
+    var solutions = customers[0].paints
+        .map {
+            val map = TreeMap<Int, Int>().apply {
+                put(it.key, it.value)
             }
-            .toSet()
-    }
+            Solution(map)
+        }
+        .toSet()
 
-    val previousSolutions = solve(customers, customerId - 1)
-    val currentSolutions = mutableSetOf<Solution>()
-    for (paint in customers[customerId].paints) {
-        for (previousSolution in previousSolutions) {
-            previousSolution.paints.get(paint.key)?.let {
-                if (it == paint.value) {
+    for (i in 1..customers.lastIndex) {
+        val currentSolutions = mutableSetOf<Solution>()
+        for (paint in customers[i].paints) {
+            for (previousSolution in solutions) {
+                previousSolution.paints.get(paint.key)?.let {
+                    if (it == paint.value) {
+                        currentSolutions.add(previousSolution)
+                    }
+                } ?: run {
+                    previousSolution.paints.put(paint.key, paint.value)
                     currentSolutions.add(previousSolution)
                 }
-            } ?: run {
-                previousSolution.paints.put(paint.key, paint.value)
-                currentSolutions.add(previousSolution)
             }
         }
+
+        solutions = currentSolutions
     }
 
-    return currentSolutions
+    return solutions
 }
 
 fun pickOptimalSolution(case: Case): IntArray? =
@@ -44,16 +42,18 @@ fun pickOptimalSolution(case: Case): IntArray? =
             it.paints.values.sum()
         }
         ?.let {
-            it.toIntArray(case.paintsQty)
+            getIntArray(it, case.paintsQty)
         }
 
 fun solveCases(cases: List<Case>): List<String> =
     cases
         .map(::pickOptimalSolution)
-        .mapIndexed { index, solution ->
-            val solutionString = solution
-                ?.let(IntArray::toContentString)
-                ?: "IMPOSSIBLE"
+        .mapIndexed(::getStringAnswer)
 
-            "Case #${index + 1}: $solutionString"
-        }
+private fun getStringAnswer(index: Int, solution: IntArray?): String {
+    val answer = solution
+        ?.let(IntArray::toContentString)
+        ?: "IMPOSSIBLE"
+
+    return "Case #${index + 1}: $answer"
+}

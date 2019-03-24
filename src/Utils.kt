@@ -12,4 +12,14 @@ fun IntArray.toContentString(): String {
     return sb.toString()
 }
 
+fun getIntArray(solution: Solution, size: Int): IntArray {
+    val result = IntArray(size)
+
+    solution.paints.forEach { entry ->
+        result[entry.key] = entry.value
+    }
+
+    return result
+}
+
 fun readLineNotNull() = readLine() ?: throw Exception("Input line must exist")

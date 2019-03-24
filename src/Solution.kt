@@ -4,16 +4,6 @@ data class Solution(
     val paints: TreeMap<Int, Int>
 )
 
-fun Solution.toIntArray(size: Int): IntArray {
-    val result = IntArray(size)
-
-    paints.forEach { entry ->
-        result[entry.key] = entry.value
-    }
-
-    return result
-}
-
 data class SolutionNew(
     private val paints: TreeMap<Int, Int>
 ): Comparable<SolutionNew> {
