@@ -1,3 +1,5 @@
+package optimized
+
 class Batches(paintsQty: Int) {
     private val array = IntArray(paintsQty)
 

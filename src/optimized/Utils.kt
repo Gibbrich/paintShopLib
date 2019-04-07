@@ -1,3 +1,6 @@
+package optimized
+
+import naive.Solution
 import java.lang.Exception
 import java.lang.StringBuilder
 

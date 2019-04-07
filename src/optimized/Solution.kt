@@ -1,6 +1,8 @@
+package optimized
+
 import java.io.File
 
-fun process(case: CaseNew): Batches? {
+fun process(case: Case): Batches? {
     val batches = Batches(case.paintsQty)
 
     var isBatchesSatisfyAllCustomers: Boolean
@@ -13,7 +15,7 @@ fun process(case: CaseNew): Batches? {
     return batches
 }
 
-private fun isBatchesSatisfyAllCustomers(batches: Batches, customers: List<CustomerNew>): Boolean? {
+private fun isBatchesSatisfyAllCustomers(batches: Batches, customers: List<Customer>): Boolean? {
     var isBatchesSatisfyAllCustomers = true
     for (customer in customers) {
         if (customer.isBatchesSatisfy(batches).not()) {
@@ -28,16 +30,16 @@ private fun isBatchesSatisfyAllCustomers(batches: Batches, customers: List<Custo
     return isBatchesSatisfyAllCustomers
 }
 
-private fun CustomerNew.isBatchesSatisfy(batches: Batches): Boolean =
+private fun Customer.isBatchesSatisfy(batches: Batches): Boolean =
     isGlossyColorsSatisfied(batches) || isMatteColorSatisfied(batches)
 
-private fun CustomerNew.isMatteColorSatisfied(batches: Batches): Boolean = matteId
+private fun Customer.isMatteColorSatisfied(batches: Batches): Boolean = matteId
     ?.let {
         batches.get(it) == 1
     }
     ?: false
 
-private fun CustomerNew.isGlossyColorsSatisfied(batches: Batches): Boolean =
+private fun Customer.isGlossyColorsSatisfied(batches: Batches): Boolean =
     glossyWishList.any {
         batches.get(it) == 0
     }
@@ -51,23 +53,23 @@ fun main(args: Array<String>) {
     answers.forEach(::println)
 }
 
-private fun getAnswers(cases: List<CaseNew>): List<String> =
+private fun getAnswers(cases: List<Case>): List<String> =
     cases.map(::process).mapIndexed { index, batches ->
         val answer = batches?.toString() ?: "IMPOSSIBLE"
-        "Case #${index + 1}: $answer"
+        "naive.Case #${index + 1}: $answer"
     }
 
-private fun parseInput(file: File): List<CaseNew> {
+private fun parseInput(file: File): List<Case> {
     val reader = file.bufferedReader()
 
     val casesQty = reader.readLine().toInt()
-    val cases = mutableListOf<CaseNew>()
+    val cases = mutableListOf<Case>()
 
     for (c in 0 until casesQty) {
         val paintQty = reader.readLine().toInt()
         val customerQty = reader.readLine().toInt()
 
-        val customers = mutableListOf<CustomerNew>()
+        val customers = mutableListOf<Customer>()
 
         for (i in 0 until customerQty) {
             val paintsData = reader.readLine().split(' ').map(String::toInt)
@@ -83,12 +85,12 @@ private fun parseInput(file: File): List<CaseNew> {
             }
 
             customers.add(
-                CustomerNew(matteId, glossyWishList)
+                Customer(matteId, glossyWishList)
             )
         }
 
         cases.add(
-            CaseNew(paintQty, customers)
+            Case(paintQty, customers)
         )
     }
 

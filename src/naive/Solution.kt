@@ -1,7 +1,9 @@
+package naive
+
 import java.util.*
 
 data class Solution(
-    val paints: TreeMap<Int, Int>
+    val paints: SortedMap<Int, Int>
 )
 
 data class SolutionNew(
