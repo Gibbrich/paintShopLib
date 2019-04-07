@@ -7,8 +7,8 @@ class Batches(paintsQty: Int) {
         return array[paintId]
     }
 
-    fun set(paintId: Int, paint: Int) {
-        array[paintId] = paint
+    fun setMatte(paintId: Int) {
+        array[paintId] = 1
     }
 
     override fun toString(): String = array.toContentString()
