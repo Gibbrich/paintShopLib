@@ -1,6 +1,6 @@
-package main.kotlin.PaintFactory.optimized
+package com.github.gibbrich.paintFactory.optimized
 
-import main.kotlin.PaintFactory.naive.Solution
+import com.github.gibbrich.paintFactory.naive.Solution
 import java.lang.Exception
 import java.lang.StringBuilder
 

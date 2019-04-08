@@ -1,4 +1,4 @@
-package main.kotlin.PaintFactory.naive
+package com.github.gibbrich.paintFactory.optimized
 
 data class Case(
     val paintsQty: Int,

@@ -1,7 +1,7 @@
-package main.kotlin.PaintFactory.naive
+package com.github.gibbrich.paintFactory.naive
 
-import main.kotlin.PaintFactory.optimized.getIntArray
-import main.kotlin.PaintFactory.optimized.toContentString
+import com.github.gibbrich.paintFactory.optimized.getIntArray
+import com.github.gibbrich.paintFactory.optimized.toContentString
 import java.util.*
 
 fun solve(customers: List<Customer>): Set<Solution> {
@@ -28,7 +28,8 @@ fun solve(customers: List<Customer>): Set<Solution> {
                         currentSolutions.add(previousSolution)
                     }
                 } else {
-                    val solution = Solution(previousSolution.paints.plus(paint.key to paint.value).toSortedMap())
+                    val solution =
+                        Solution(previousSolution.paints.plus(paint.key to paint.value).toSortedMap())
                     currentSolutions.add(solution)
                 }
             }
@@ -82,7 +83,8 @@ fun combineSolutions(currentSolutions: Set<Solution>, acc: Set<Solution>): Set<S
                         result.add(previousSolution)
                     }
                 } else {
-                    val solution = Solution(previousSolution.paints.plus(paint.key to paint.value).toSortedMap())
+                    val solution =
+                        Solution(previousSolution.paints.plus(paint.key to paint.value).toSortedMap())
                     result.add(solution)
                 }
             }

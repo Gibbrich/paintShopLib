@@ -1,4 +1,4 @@
-package main.kotlin.PaintFactory.optimized
+package com.github.gibbrich.paintFactory.optimized
 
 fun process(case: Case): Batches? {
     val batches = Batches(case.paintsQty)
@@ -6,7 +6,10 @@ fun process(case: Case): Batches? {
     var isBatchesSatisfyAllCustomers: Boolean
 
     do {
-        isBatchesSatisfyAllCustomers = isBatchesSatisfyAllCustomers(batches, case.customers)
+        isBatchesSatisfyAllCustomers = isBatchesSatisfyAllCustomers(
+            batches,
+            case.customers
+        )
                 ?: return null
     } while (isBatchesSatisfyAllCustomers.not())
 
