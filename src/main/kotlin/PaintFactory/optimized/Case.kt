@@ -1,4 +1,4 @@
-package optimized
+package main.kotlin.PaintFactory.optimized
 
 data class Case(
     val paintsQty: Int,

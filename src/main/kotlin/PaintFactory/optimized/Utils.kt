@@ -1,6 +1,6 @@
-package optimized
+package main.kotlin.PaintFactory.optimized
 
-import naive.Solution
+import main.kotlin.PaintFactory.naive.Solution
 import java.lang.Exception
 import java.lang.StringBuilder
 

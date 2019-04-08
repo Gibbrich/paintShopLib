@@ -1,4 +1,4 @@
-package optimized
+package main.kotlin.PaintFactory.optimized
 
 fun process(case: Case): Batches? {
     val batches = Batches(case.paintsQty)

@@ -1,4 +1,4 @@
-package naive
+package main.kotlin.PaintFactory.naive
 
 import kotlin.collections.HashMap
 

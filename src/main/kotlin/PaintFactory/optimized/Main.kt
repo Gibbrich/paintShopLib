@@ -1,4 +1,4 @@
-package optimized
+package main.kotlin.PaintFactory.optimized
 
 import java.io.File
 

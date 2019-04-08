@@ -1,4 +1,4 @@
-package optimized
+package main.kotlin.PaintFactory.optimized
 
 class Batches(paintsQty: Int) {
     private val array = IntArray(paintsQty)

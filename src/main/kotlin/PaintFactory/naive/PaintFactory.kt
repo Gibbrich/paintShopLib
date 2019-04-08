@@ -1,7 +1,7 @@
-package naive
+package main.kotlin.PaintFactory.naive
 
-import optimized.getIntArray
-import optimized.toContentString
+import main.kotlin.PaintFactory.optimized.getIntArray
+import main.kotlin.PaintFactory.optimized.toContentString
 import java.util.*
 
 fun solve(customers: List<Customer>): Set<Solution> {
