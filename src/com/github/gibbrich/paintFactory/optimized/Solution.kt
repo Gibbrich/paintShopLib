@@ -3,15 +3,14 @@ package com.github.gibbrich.paintFactory.optimized
 fun process(case: Case): Batches? {
     val batches = Batches(case.paintsQty)
 
-    var isBatchesSatisfyAllCustomers: Boolean
+    var isBatchesSatisfyAllCustomers = false
 
-    do {
+    while (isBatchesSatisfyAllCustomers.not()) {
         isBatchesSatisfyAllCustomers = isBatchesSatisfyAllCustomers(
             batches,
             case.customers
-        )
-                ?: return null
-    } while (isBatchesSatisfyAllCustomers.not())
+        ) ?: return null
+    }
 
     return batches
 }
