@@ -37,12 +37,3 @@ dependencies {
     testImplementation 'org.jetbrains.kotlin:kotlin-test-junit'
     testImplementation 'junit:junit:4.12'
 }
-
-//task paintFactory(type: JavaExec) {
-//    group = 'Run'
-//    description = 'Runs application with specified arguments'
-//
-//    classpath sourceSets.main.runtimeClasspath
-//    main = mainClassName
-//    args inputFilePath
-//}
