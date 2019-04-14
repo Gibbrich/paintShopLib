@@ -23,6 +23,7 @@ Thumbs.db
 .gradle
 !gradle-wrapper.jar
 build
+local.properties
 
 # Maven
 target

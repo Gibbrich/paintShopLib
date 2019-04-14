@@ -7,9 +7,12 @@
 plugins {
     // Apply the Kotlin JVM plugin to add support for Kotlin on the JVM.
     id 'org.jetbrains.kotlin.jvm' version '1.3.21'
+    id 'application'
 }
 
 apply plugin: 'maven'
+
+mainClassName = 'optimized.PaintFactoryKt'
 
 group = 'com.github.gibbrich'
 
@@ -32,4 +35,14 @@ dependencies {
 
     // Use the Kotlin JUnit integration.
     testImplementation 'org.jetbrains.kotlin:kotlin-test-junit'
+    testImplementation 'junit:junit:4.12'
 }
+
+//task paintFactory(type: JavaExec) {
+//    group = 'Run'
+//    description = 'Runs application with specified arguments'
+//
+//    classpath sourceSets.main.runtimeClasspath
+//    main = mainClassName
+//    args inputFilePath
+//}
